@@ -1,0 +1,25 @@
+.row {
+    margin: 100px;
+}
+
+.profileName {
+    font-size: 25px;
+    font-weight: 700;
+    color: #1b388a;
+}
+
+.profileLocation {
+    font-size: 16px;
+}
+
+.profileBio {
+    font-size: 16px;
+}
+
+.profileLinkedIn {
+    font-size: 16px;
+}
+
+.profileGitHub {
+    font-size: 16px;
+}
