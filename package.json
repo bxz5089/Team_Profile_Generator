@@ -1,10 +1,10 @@
 {
-  "name": "28-stu_mini-project",
+  "name": "team_profile_generator",
   "version": "1.0.0",
-  "description": "In this activity, you will build a command-line tool that generates an HTML portfolio page from user input.",
+  "description": "A command-line tool that generates an HTML team portfolio page from user input.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
