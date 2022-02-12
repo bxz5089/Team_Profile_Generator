@@ -1,9 +1,9 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-//Your application should prompt the user for information like their name, location, bio, LinkedIn URL, and GitHub URL. 
+const teamArray = []; 
 
-var profile = new Promise(function (resolve, reject) {
+const createManager = new Promise(function (resolve, reject) {
   resolve(inquirer.prompt([
     {
       type: 'input',
@@ -12,13 +12,18 @@ var profile = new Promise(function (resolve, reject) {
     },
     {
       type: 'input',
-      message: 'Where is your location?',
-      name: 'location',
+      message: 'Where is your ID?',
+      name: 'id',
     },
     {
       type: 'input',
-      message: 'What is your bio?',
-      name: 'bio',
+      message: 'Where is your email?',
+      name: 'email',
+    },
+    {
+      type: 'input',
+      message: 'What is your office number?',
+      name: 'officeNumber',
     },
     {
       type: 'input',
