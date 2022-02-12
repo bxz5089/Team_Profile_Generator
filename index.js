@@ -1,95 +1,236 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const path = require('path');
 
-const teamArray = []; 
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
 
-const createManager = new Promise(function (resolve, reject) {
+const generateProfiles = require('./assets/generateProfiles');
+const outputDir
+const outputPath
+
+const teamMembers = []; 
+
+const createManager = () => {
   resolve(inquirer.prompt([
     {
       type: 'input',
       message: 'What is your name?',
       name: 'name',
+      validate: inputName => {
+        if (inputName) {
+          return true;
+        } else {
+          console.log('Please enter a name!')
+          return false;
+        }
+      }
     },
     {
       type: 'input',
-      message: 'Where is your ID?',
+      message: 'What is your ID?',
       name: 'id',
+      validate: inputId => {
+        if (inputId) {
+          return true;
+        } else {
+          console.log('Please enter a ID!')
+          return false;
+        }
+      }
     },
     {
       type: 'input',
-      message: 'Where is your email?',
+      message: 'What is your email?',
       name: 'email',
+      validate: inputEmail => {
+        if (inputEmail) {
+          return true;
+        } else {
+          console.log('Please enter a email!')
+          return false;
+        }
+      }
     },
     {
       type: 'input',
       message: 'What is your office number?',
       name: 'officeNumber',
-    },
-    {
-      type: 'input',
-      message: 'What is your LinkedIn URL?',
-      name: 'LinkedIn',
-    }, 
-    {
-      type: 'input',
-      message: 'What is your GitHub URL?',
-      name: 'GitHub',
-    },
-  ])
-)});
-
-
-profile.then(function(data){
-  const html = `
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>HTMLProfiles</title>
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-      <link rel="stylesheet" type="text/css" href="./style.css">
-      
-  </head>
-  <body>
-      
-    <div class="row">
-        <div class="d-flex justify-content-center">
-            <div class="card" style="width: 18rem;">
-            <img src="https://www.visitphilly.com/wp-content/uploads/2020/12/WilliamPenn_ElevatedAngles19_straight_2200x1237-2200x1237.jpg" class="card-img-top" alt="Philadelphia">
-                <div class="card-body">
-                <div class="profileName">${data.name}</div>
-                <div class="profileLocation">${data.location}</div>
-                <div class="profileBio">${data.bio}</div>
-                <div class="profileLinkedIn">${data.LinkedIn}</div>
-                <div class="profileGitHub">${data.GitHub}</div>
-                </div>
-            </div>
-        </div>
-    </div>
-  
-  
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="script.js"></script>
-  
-  </body>
-  </html> 
-  `;
-
-  fs.writeFile('index.html', html, function (err) {
-      if (err) {
-          return console.log(err);
+      validate: inputOfficeNumber => {
+        if (inputOfficeNumber) {
+          return true;
+        } else {
+          console.log('Please enter a office number!')
+          return false;
+        }
       }
+    },
+  ]).then(answers => {
+    console.log(answers);
+    const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+    teamMembers.push(manager);
+    promptMenu();
+  })
+  );
+};
 
-      console.log('Success!');
-  });
-})
+const promptMenu = () => {
+  resolve(inquirer.prompt([
+    {
+      type: 'list',
+      message: 'Who would you like to add to your team?',
+      name: 'menu',
+      choices: ['Add engineer', 'Add intern', 'Complete building team']
+    }])
+    .then(userChoice => {
+      switch (userChoice.menu) {
+        case 'Add engineer':
+          promptEngineer();
+          break;
+          case 'Add intern':
+            promptIntern()
+            break;
+            default:
+              bulidTeam();
+      }
+    })
+  )
+};
 
-//fs for writing to the file system
+const promptEngineer = () => {
+  return inquirer.prompt([
+    {
+      type: 'input',
+      message: "What is the engineer's name?",
+      name: 'name',
+      validate: inputName => {
+        if (inputName) {
+          return true;
+        } else {
+          console.log('Please enter a name!')
+          return false;
+        }
+      }    
+    },
+    {
+      type: 'input',
+      message: "What is the engineer's ID?",
+      name: 'id',
+      validate: inputId => {
+        if (inputId) {
+          return true;
+        } else {
+          console.log('Please enter a ID!')
+          return false;
+        }
+      }
+    },
+    {
+      type: 'input',
+      message: "What is the engineer's email?",
+      name: 'email',
+      validate: inputEmail => {
+        if (inputEmail) {
+          return true;
+        } else {
+          console.log('Please enter a email!')
+          return false;
+        }
+      }
+    },
+    {
+      type: 'input',
+      message: "What is engineer's GitHub username?",
+      name: 'gitHub',
+      validate: inputGitHub => {
+        if (inputGitHub) {
+          return true;
+        } else {
+          console.log('Please enter a GitHub username!')
+          return false;
+        }
+      }
+    },
+  ]).then(answers => {
+    console.log(answers);
+    const engineer = new Engineer (answers.name, answers.id, answers.email, answers.gitHub);
+    teamMembers.push(engineer);
+    promptMenu();
+  })
+};
 
-fs.appendFile('newProfiles.txt', 'New Profile', function (err) {
-  if (err) throw err;
-  console.log('Saved!');
-});
+const promptIntern = () => {
+  return inquirer.prompt([
+    {
+      type: 'input',
+      message: "What is the intern's name?",
+      name: 'name',
+      validate: inputName => {
+        if (inputName) {
+          return true;
+        } else {
+          console.log('Please enter a name!')
+          return false;
+        }
+      }    
+    },
+    {
+      type: 'input',
+      message: "What is the intern's ID?",
+      name: 'id',
+      validate: inputId => {
+        if (inputId) {
+          return true;
+        } else {
+          console.log('Please enter a ID!')
+          return false;
+        }
+      }
+    },
+    {
+      type: 'input',
+      message: "What is the intern's email?",
+      name: 'email',
+      validate: inputEmail => {
+        if (inputEmail) {
+          return true;
+        } else {
+          console.log('Please enter a email!')
+          return false;
+        }
+      }
+    },
+    {
+      type: 'input',
+      message: "What is intern's school?",
+      name: 'school',
+      validate: inputSchool => {
+        if (inputSchool) {
+          return true;
+        } else {
+          console.log('Please enter a school name!')
+          return false;
+        }
+      }
+    },
+  ]).then(answers => {
+    console.log(answers);
+    const intern = new Intern (answers.name, answers.id, answers.email, answers.school);
+    teamMembers.push(intern);
+    promptMenu();
+  })
+};
+
+const buildTeam = () => {
+  if (!fs.existsSync(OUTOUT_DIR)) {
+    fs.mkdirSync(OUTOUT_DIR)
+  }
+  fs.writeFileSync(outputPath, generateProfiles(teamMembers), 'utf-8');
+};
+
+createManager();
+
+
+
   
