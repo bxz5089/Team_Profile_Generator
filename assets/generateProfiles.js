@@ -1,6 +1,5 @@
 const generateManagerProfile = function (manager) {
     return `
-    <div class="d-flex justify-content-center">
         <div class="card" style="width: 18rem;">
         <img src="https://www.visitphilly.com/wp-content/uploads/2020/12/WilliamPenn_ElevatedAngles19_straight_2200x1237-2200x1237.jpg" class="card-img-top" alt="Philadelphia">
         <div class="card-body">
@@ -10,13 +9,11 @@ const generateManagerProfile = function (manager) {
             <p class="office">Office Number: ${manager.officeNumber}</p>
         </div>
         </div>
-    </div>
     `;
 };
 
 const generateEngineerProfile = function (engineer) {
     return `
-    <div class="d-flex justify-content-center">
         <div class="card" style="width: 18rem;">
         <img src="https://www.visitphilly.com/wp-content/uploads/2020/12/WilliamPenn_ElevatedAngles19_straight_2200x1237-2200x1237.jpg" class="card-img-top" alt="Philadelphia">
         <div class="card-body">
@@ -26,13 +23,11 @@ const generateEngineerProfile = function (engineer) {
             <p class="github">Github: <a href="https://github.com/${engineer.gitHub}">${engineer.gitHub}</a></p>
         </div>
         </div>
-    </div>
     `
 };
 
 const generateInternProfile = function (intern) {
     return `
-    <div class="d-flex justify-content-center">
         <div class="card" style="width: 18rem;">
         <img src="https://www.visitphilly.com/wp-content/uploads/2020/12/WilliamPenn_ElevatedAngles19_straight_2200x1237-2200x1237.jpg" class="card-img-top" alt="Philadelphia">
         <div class="card-body">
@@ -42,7 +37,6 @@ const generateInternProfile = function (intern) {
             <p class="school">School: ${intern.school}</p>
         </div>
         </div>
-    </div>
     `
 };
 
@@ -88,20 +82,22 @@ const generateTeamPage = function (employeeCards) {
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>Team Profile Generator</title>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-      <link rel="stylesheet" type="text/css" href="style.css">
+      <link rel="stylesheet" type="text/css" href="./style.css">
       
   </head>
   <body>
 
     <header>
         <nav class="navbar" id="navbar">
-            <span class="navbar-brand mb-0 h1 w-100 text-center" id="navbar-text">Team Profile</span>
+            <span class="navbar-brand mb-0 h1 w-100 text-center text-primary" id="teamText">Team Profile</span>
         </nav>
     </header>
     <main>
         <div class="container">
             <div class="row justify-content-center" id="team-cards">
-                ${employeeCards}
+                <div class="card-group">
+                    ${employeeCards}
+                </div>
             </div>
         </div>
     </main>
@@ -111,6 +107,7 @@ const generateTeamPage = function (employeeCards) {
   <script type="text/javascript" src="script.js"></script>
   
   </body>
+  </html> 
   </html> 
 `;
 }

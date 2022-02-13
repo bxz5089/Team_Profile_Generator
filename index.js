@@ -8,7 +8,7 @@ const Intern = require('./lib/Intern');
 
 const generateProfiles = require('./assets/generateProfiles');
 const outputDir = path.resolve(__dirname, 'output');
-const outputPath = path.join(outputDir, 'team.html')
+const outputPath = path.join(outputDir, 'teamProfile.html')
 
 const teamMembers = []; 
 
