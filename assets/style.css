@@ -2,24 +2,8 @@
     margin: 100px;
 }
 
-.profileName {
+h3 {
     font-size: 30px;
     font-weight: 800;
     color: #4069da;
-}
-
-.profileLocation {
-    font-size: 16px;
-}
-
-.profileBio {
-    font-size: 16px;
-}
-
-.profileLinkedIn {
-    font-size: 16px;
-}
-
-.profileGitHub {
-    font-size: 16px;
 }

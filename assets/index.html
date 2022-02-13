@@ -11,18 +11,47 @@
       
   </head>
   <body>
+
+    <header>
+        <nav class="navbar" id="navbar">
+            <span class="navbar-brand mb-0 h1 w-100 text-center" id="navbar-text">Team Profile</span>
+        </nav>
+    </header>
       
     <div class="row">
         <div class="d-flex justify-content-center">
             <div class="card" style="width: 18rem;">
             <img src="https://www.visitphilly.com/wp-content/uploads/2020/12/WilliamPenn_ElevatedAngles19_straight_2200x1237-2200x1237.jpg" class="card-img-top" alt="Philadelphia">
-                <div class="card-body">
-                <div class="profileName">Bowen</div>
-                <div class="profileLocation">Phildephia </div>
-                <div class="profileBio">Hi</div>
-                <div class="profileLinkedIn">....</div>
-                <div class="profileGitHub">.....</div>
-                </div>
+            <div class="card-body">
+                <h3>${manager.name}</h3>
+                <p class="id">ID: ${manager.id}</p>
+                <p class="email">Email: <a href="mailto:${manager.email}">${manager.email}</a></p>
+                <p class="office">Office Number: ${manager.officeNumber}</p>
+            </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <div class="card" style="width: 18rem;">
+            <img src="https://www.visitphilly.com/wp-content/uploads/2020/12/WilliamPenn_ElevatedAngles19_straight_2200x1237-2200x1237.jpg" class="card-img-top" alt="Philadelphia">
+            <div class="card-body">
+                <h3>${engineer.name}</h3>
+                <p class="id">ID: ${engineer.id}</p>
+                <p class="email">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></p>
+                <p class="github">Github: <a href="https://github.com/${engineer.gitHub}">${engineer.gitHub}</a></p>
+            </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <div class="card" style="width: 18rem;">
+            <img src="https://www.visitphilly.com/wp-content/uploads/2020/12/WilliamPenn_ElevatedAngles19_straight_2200x1237-2200x1237.jpg" class="card-img-top" alt="Philadelphia">
+            <div class="card-body">
+                <h3>${intern.name}</h3>
+                <p class="id">ID: ${intern.id}</p>
+                <p class="email">Email:<a href="mailto:${intern.email}">${intern.email}</a></p>
+                <p class="school">School: ${intern.school}</p>
+            </div>
             </div>
         </div>
     </div>

@@ -7,13 +7,13 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
 const generateProfiles = require('./assets/generateProfiles');
-const outputDir
-const outputPath
+const outputDir = path.resolve(__dirname, 'output');
+const outputPath = path.join(outputDir, 'team.html')
 
 const teamMembers = []; 
 
 const createManager = () => {
-  resolve(inquirer.prompt([
+  return (inquirer.prompt([
     {
       type: 'input',
       message: 'What is your name?',
@@ -76,7 +76,7 @@ const createManager = () => {
 };
 
 const promptMenu = () => {
-  resolve(inquirer.prompt([
+  return (inquirer.prompt([
     {
       type: 'list',
       message: 'Who would you like to add to your team?',
@@ -86,19 +86,19 @@ const promptMenu = () => {
     .then(userChoice => {
       switch (userChoice.menu) {
         case 'Add engineer':
-          promptEngineer();
+          createEngineer();
           break;
           case 'Add intern':
-            promptIntern()
+            createIntern()
             break;
             default:
-              bulidTeam();
+              buildTeam();
       }
     })
   )
 };
 
-const promptEngineer = () => {
+const createEngineer = () => {
   return inquirer.prompt([
     {
       type: 'input',
@@ -160,7 +160,7 @@ const promptEngineer = () => {
   })
 };
 
-const promptIntern = () => {
+const createIntern = () => {
   return inquirer.prompt([
     {
       type: 'input',
@@ -223,8 +223,8 @@ const promptIntern = () => {
 };
 
 const buildTeam = () => {
-  if (!fs.existsSync(OUTOUT_DIR)) {
-    fs.mkdirSync(OUTOUT_DIR)
+  if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir)
   }
   fs.writeFileSync(outputPath, generateProfiles(teamMembers), 'utf-8');
 };
