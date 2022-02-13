@@ -1,6 +1,5 @@
 # Team Profile Generator
 
----
 ## Description
 
 A Node.js command-line application that takes in information about employees on a software engineering team, then generates an HTML webpage that displays summaries for each person. 
@@ -37,7 +36,7 @@ This application can allow users to quickly and easily create a team profile HTM
 ![alt text](assets/img/ScreenShot1.png)
 
 ### Walkthrough Video:
-[![Watch the video](assets/img/ScreenShot2.png)](https://drive.google.com/file/d/1Oslm6RCPScErXn4-AufZ6xFKltaEgI30/view?usp=sharing)
+[![Watch the video](assets/img/ScreenShot2.png)](https://drive.google.com/file/d/1nI8hYa4JhkhPfw0l-vvrUjx80ICiM8mV/view?usp=sharing)
 
 --- 
  
